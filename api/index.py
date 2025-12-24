@@ -1,9 +1,4 @@
-import json
-import os
-
-import serverless_wsgi
-
-# 确保可以导入项目根目录的模块
+# Vercel Python Serverless 入口：直接暴露 Flask app 即可（WSGI 适配由平台处理）
 import sys
 from pathlib import Path
 
@@ -12,8 +7,3 @@ if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))
 
 from rag_backend import app  # noqa: E402
-
-
-def handler(event, context):
-    """Vercel Python Serverless 入口"""
-    return serverless_wsgi.handle_request(app, event, context)
