@@ -290,6 +290,26 @@ body {
     transform: translateY(-1px);
 }
 
+.helper-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.6rem;
+    margin-top: 1rem;
+}
+
+.helper-item {
+    background: rgba(15, 23, 42, 0.04);
+    border: 1px dashed rgba(25, 80, 255, 0.18);
+    color: var(--text-secondary);
+    padding: 0.65rem 0.85rem;
+    border-radius: var(--radius-lg);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 .panel-head {
     display: flex;
     justify-content: space-between;
@@ -555,6 +575,7 @@ h2 {
     color: var(--text-primary);
     align-self: flex-start;
     border-bottom-left-radius: 4px;
+    border: 1px solid rgba(25, 80, 255, 0.08);
 }
 
 .chat-message-header {
@@ -584,6 +605,7 @@ h2 {
     padding: 1.1rem 1.2rem;
     transition: all 0.2s ease;
     position: relative;
+    cursor: pointer;
 }
 
 .source-item::before {
@@ -616,6 +638,9 @@ h2 {
     font-weight: 800;
     color: var(--text-primary);
     margin-left: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
 }
 
 .source-meta {
@@ -657,6 +682,9 @@ h2 {
     text-align: center;
     padding: 2rem 1rem;
     color: var(--text-secondary);
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    border: 1px dashed rgba(25, 80, 255, 0.2);
 }
 
 .empty-state-icon {

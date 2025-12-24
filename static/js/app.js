@@ -305,9 +305,8 @@ function displayChatResults(data) {
     resultsContainer.classList.add('active');
     resultsContainer.classList.add('fade-in');
 
-    // 显示答案（最新回答已在对话历史中显示，这里作为摘要显示）
-    answerSection.style.display = 'block';
-    answerContent.textContent = data.answer || '无法生成答案';
+    // 仅保留对话气泡显示，隐藏摘要卡片
+    answerSection.style.display = 'none';
 
     // 显示源文档
     sourcesSection.style.display = 'block';
