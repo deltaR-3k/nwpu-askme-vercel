@@ -12,148 +12,171 @@
 <body>
     <div class="background-decoration"></div>
     <div class="grid-overlay"></div>
-    <div class="container">
-        <div class="topbar">
-            <div class="brand">
-                <div class="brand-mark">NPU</div>
-                <div class="brand-text">
-                    <span class="brand-title">RAG 智能问答</span>
-                    <span class="brand-desc">为西工大打造的知识与对话中枢</span>
+    <div class="grain"></div>
+    <div class="page">
+        <header class="nav">
+            <div class="logo">
+                <span class="logo-mark">NPU</span>
+                <div class="logo-text">
+                    <span class="logo-title">RAG 智能问答</span>
+                    <span class="logo-desc">西北工业大学 · 校园知识与对话中枢</span>
                 </div>
             </div>
-            <div class="topbar-actions">
-                <span class="pill muted">知识库已加载</span>
-                <span class="pill accent">实时多轮对话</span>
-            </div>
-        </div>
-
-        <header class="header-section">
-            <div class="header-icon">🎓</div>
-            <h1>西北工业大学智能问答系统</h1>
-            <p class="header-subtitle">基于RAG技术的智能问答助手，为您提供准确的校园信息查询服务</p>
-            <div class="header-badge">
-                <span class="badge-item">✨ AI驱动</span>
-                <span class="badge-item">📚 知识库</span>
-                <span class="badge-item">💬 多轮对话</span>
+            <div class="nav-actions">
+                <span class="status-pill success">在线</span>
+                <span class="status-pill soft">知识库已加载</span>
+                <span class="status-pill accent">多轮追问</span>
             </div>
         </header>
 
-        <div class="meta-grid">
-            <div class="meta-card">
-                <div class="meta-label">知识覆盖</div>
-                <div class="meta-value">7 个主题</div>
-                <p>课程、学术、生活等核心校内问题沉淀</p>
-            </div>
-            <div class="meta-card">
-                <div class="meta-label">响应体验</div>
-                <div class="meta-value">毫秒级检索</div>
-                <p>语义检索+生成式回答，实时返回最佳参考</p>
-            </div>
-            <div class="meta-card">
-                <div class="meta-label">对话模式</div>
-                <div class="meta-value">多轮追问</div>
-                <p>上下文记忆，持续跟进您的细化需求</p>
-            </div>
-        </div>
-
-        <div class="search-container">
-            <div class="panel-head">
-                <div>
-                    <p class="eyebrow">提出问题或关键词</p>
-                    <h3>快速检索或与智能助手对话</h3>
-                    <p class="panel-desc">使用左侧输入框，选择“搜索文档”或“智能问答”获取最合适的信息和出处。</p>
-                </div>
-                <div class="panel-status">
-                    <span class="pill success">在线</span>
-                    <span class="pill ghost">OpenAI API 可用</span>
-                </div>
-            </div>
-            <div class="search-wrapper">
-                <form id="searchForm" class="search-form">
-                    <div class="input-wrapper">
-                        <span class="input-icon">💭</span>
-                        <input 
-                            type="text" 
-                            id="searchInput" 
-                            class="search-input" 
-                            placeholder="请输入您的问题，例如：如何选课？GPA如何计算？..."
-                            autocomplete="off"
-                        >
-                    </div>
-                    <div class="button-group">
-                        <button type="submit" id="searchButton" class="btn btn-primary">
-                            <span class="btn-icon">🔍</span>
-                            <span class="btn-text">搜索文档</span>
-                        </button>
-                        <button type="button" id="chatButton" class="btn btn-chat">
-                            <span class="btn-icon">💬</span>
-                            <span class="btn-text">智能问答</span>
-                        </button>
-                        <button type="button" id="clearChatButton" class="btn btn-clear" style="display: none;">
-                            <span class="btn-icon">🗑️</span>
-                            <span class="btn-text">清除对话</span>
-                        </button>
-                    </div>
-                </form>
-
-                <div class="prompt-chips">
-                    <button type="button" class="prompt-chip" data-prompt="如何选课？流程和注意事项有哪些？">选课流程与注意事项</button>
-                    <button type="button" class="prompt-chip" data-prompt="GPA 如何计算？有没有成绩查询入口？">GPA 计算与查询</button>
-                    <button type="button" class="prompt-chip" data-prompt="转专业需要满足什么条件？">转专业政策</button>
-                    <button type="button" class="prompt-chip" data-prompt="校园生活指南有哪些？住宿与饮食怎么安排？">校园生活指南</button>
-                </div>
-
-                <div class="search-options">
-                    <div class="option-item">
-                        <label class="option-label">
-                            <span class="label-icon">📊</span>
-                            <span>返回文档数:</span>
-                        </label>
-                        <input type="number" id="topK" value="5" min="1" max="20" class="option-input">
+        <main class="layout">
+            <aside class="sidebar glass">
+                <div class="hero-card">
+                    <div class="hero-icon">🎓</div>
+                    <div>
+                        <p class="eyebrow">西北工业大学</p>
+                        <h1>智能问答中枢</h1>
+                        <p class="header-subtitle">以 RAG 驱动的对话助手，准确、可信地回答校园相关问题。</p>
                     </div>
                 </div>
-            </div>
 
-            <div class="helper-strip">
-                <div class="helper-item">⏱ 实时响应</div>
-                <div class="helper-item">🧭 先搜索，再追问细节</div>
-                <div class="helper-item">🛡️ Key 安全：仅在后端使用</div>
-            </div>
-        </div>
-
-        <div id="errorMessage" class="error-message"></div>
-
-        <div id="loading" class="loading">
-            <div class="loading-content">
-                <div class="spinner-wrapper">
-                    <div class="spinner"></div>
-                    <div class="spinner-ring"></div>
+                <div class="meta-grid">
+                    <div class="meta-card">
+                        <div class="meta-label">知识覆盖</div>
+                        <div class="meta-value">7 个主题</div>
+                        <p>课程、学术、生活等核心校内问题沉淀</p>
+                    </div>
+                    <div class="meta-card">
+                        <div class="meta-label">响应体验</div>
+                        <div class="meta-value">毫秒级检索</div>
+                        <p>语义检索+生成式回答，实时返回最佳参考</p>
+                    </div>
+                    <div class="meta-card">
+                        <div class="meta-label">对话模式</div>
+                        <div class="meta-value">多轮追问</div>
+                        <p>上下文记忆，持续跟进细化需求</p>
+                    </div>
                 </div>
-                <p class="loading-text">正在处理中，请稍候...</p>
-                <div class="loading-dots">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+
+                <div class="tip-card">
+                    <div class="tip-title">使用建议</div>
+                    <ul class="tip-list">
+                        <li>先用“搜索文档”找到出处，再用“智能问答”追问细节。</li>
+                        <li>保留上下文多轮追问，获得更精准的答案。</li>
+                        <li>需要不同角度时调高“返回文档数”。</li>
+                    </ul>
                 </div>
-            </div>
-        </div>
 
-        <div id="resultsContainer" class="results-container">
-            <div id="chatHistorySection" class="chat-history-section" style="display: none;">
-                <h2>💬 对话历史</h2>
-                <div id="chatHistoryList" class="chat-history-list"></div>
-            </div>
+                <div class="chip-block">
+                    <div class="chip-title">快速提示</div>
+                    <div class="prompt-chips">
+                        <button type="button" class="prompt-chip" data-prompt="如何选课？流程和注意事项有哪些？">选课流程</button>
+                        <button type="button" class="prompt-chip" data-prompt="GPA 如何计算？有没有成绩查询入口？">GPA 计算</button>
+                        <button type="button" class="prompt-chip" data-prompt="转专业需要满足什么条件？">转专业政策</button>
+                        <button type="button" class="prompt-chip" data-prompt="校园生活指南有哪些？住宿与饮食怎么安排？">校园生活</button>
+                    </div>
+                </div>
+            </aside>
 
-            <div id="answerSection" class="answer-section" style="display: none;">
-                <h2>🤖 智能回答</h2>
-                <div id="answerContent" class="answer-content"></div>
-            </div>
+            <section class="chat-panel glass">
+                <div class="panel-head">
+                    <div>
+                        <p class="eyebrow">提出问题或关键词</p>
+                        <h3>开启对话 · 检索与问答随时切换</h3>
+                        <p class="panel-desc">输入问题，选择“搜索文档”查看出处，或用“智能问答”得到精简答案与参考。</p>
+                    </div>
+                    <div class="panel-status">
+                        <span class="status-pill ghost">OpenAI API 可用</span>
+                        <span class="status-pill soft">Top K 可调</span>
+                    </div>
+                </div>
 
-            <div id="sourcesSection" class="sources-section" style="display: none;">
-                <h2>📚 相关文档</h2>
-                <div id="sourcesList" class="source-list"></div>
-            </div>
-        </div>
+                <div class="search-wrapper">
+                    <form id="searchForm" class="search-form">
+                        <div class="input-wrapper">
+                            <span class="input-icon">💭</span>
+                            <input 
+                                type="text" 
+                                id="searchInput" 
+                                class="search-input" 
+                                placeholder="描述你的问题，或粘贴一段文本……"
+                                autocomplete="off"
+                            >
+                        </div>
+                        <div class="button-group">
+                            <button type="submit" id="searchButton" class="btn btn-primary">
+                                <span class="btn-icon">🔍</span>
+                                <span class="btn-text">搜索文档</span>
+                            </button>
+                            <button type="button" id="chatButton" class="btn btn-chat">
+                                <span class="btn-icon">💬</span>
+                                <span class="btn-text">智能问答</span>
+                            </button>
+                            <button type="button" id="clearChatButton" class="btn btn-clear" style="display: none;">
+                                <span class="btn-icon">🗑️</span>
+                                <span class="btn-text">清除对话</span>
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="search-options">
+                        <div class="option-item">
+                            <label class="option-label">
+                                <span class="label-icon">📊</span>
+                                <span>返回文档数</span>
+                            </label>
+                            <input type="number" id="topK" value="5" min="1" max="20" class="option-input">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="helper-strip">
+                    <div class="helper-item">⏱ 实时响应</div>
+                    <div class="helper-item">🧭 先检索再追问</div>
+                    <div class="helper-item">🛡️ Key 仅在后端</div>
+                </div>
+
+                <div id="errorMessage" class="error-message"></div>
+
+                <div id="loading" class="loading">
+                    <div class="loading-content">
+                        <div class="spinner-wrapper">
+                            <div class="spinner"></div>
+                            <div class="spinner-ring"></div>
+                        </div>
+                        <p class="loading-text">正在处理中，请稍候...</p>
+                        <div class="loading-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="resultsContainer" class="results-container">
+                    <div id="chatHistorySection" class="chat-history-section" style="display: none;">
+                        <div class="section-title">
+                            <span>💬 对话历史</span>
+                            <small>从最新消息继续追问</small>
+                        </div>
+                        <div id="chatHistoryList" class="chat-history-list"></div>
+                    </div>
+
+                    <div id="answerSection" class="answer-section" style="display: none;">
+                        <h2>🤖 智能回答</h2>
+                        <div id="answerContent" class="answer-content"></div>
+                    </div>
+
+                    <div id="sourcesSection" class="sources-section" style="display: none;">
+                        <div class="section-title">
+                            <span>📚 相关文档</span>
+                            <small>点击卡片展开/折叠</small>
+                        </div>
+                        <div id="sourcesList" class="source-list"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
 
     <script src="static/js/app.js"></script>

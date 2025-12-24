@@ -273,6 +273,7 @@ function displaySearchResults(data) {
     hideLoading();
     resultsContainer.classList.add('active');
     resultsContainer.classList.add('fade-in');
+    resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
     // 隐藏对话历史和答案区域（搜索模式）
     chatHistorySection.style.display = 'none';
@@ -304,6 +305,7 @@ function displayChatResults(data) {
     hideLoading();
     resultsContainer.classList.add('active');
     resultsContainer.classList.add('fade-in');
+    resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
     // 仅保留对话气泡显示，隐藏摘要卡片
     answerSection.style.display = 'none';
