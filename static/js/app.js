@@ -19,6 +19,7 @@ const sourcesSection = document.getElementById('sourcesSection');
 const sourcesList = document.getElementById('sourcesList');
 const errorMessage = document.getElementById('errorMessage');
 const promptChips = document.querySelectorAll('.prompt-chip');
+const themeToggle = document.getElementById('themeToggle');
 
 // 对话历史
 let conversationHistory = [];
@@ -64,7 +65,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 检查后端健康状态
     checkHealth();
+
+    // 主题加载与切换
+    initTheme();
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    }
 });
+
+function initTheme() {
+    const saved = localStorage.getItem('npu-theme');
+    if (saved === 'dark') {
+        document.body.classList.add('theme-dark');
+    } else {
+        document.body.classList.remove('theme-dark');
+    }
+}
+
+function toggleTheme() {
+    const isDark = document.body.classList.toggle('theme-dark');
+    localStorage.setItem('npu-theme', isDark ? 'dark' : 'light');
+}
 
 // 检查后端健康状态
 async function checkHealth() {
@@ -351,13 +372,19 @@ function createSourceItem(doc, index, isChatMode = false) {
     if (isLong) {
         item.addEventListener('click', () => {
             const contentDiv = item.querySelector('.source-content');
+            if (!contentDiv) return;
+            if (!contentDiv.dataset.expanded) {
+                contentDiv.dataset.expanded = 'false';
+            }
             const expanded = contentDiv.dataset.expanded === 'true';
             if (expanded) {
                 contentDiv.style.webkitLineClamp = '3';
+                contentDiv.style.display = '-webkit-box';
                 contentDiv.textContent = escapeHtml(content.substring(0, 300)) + (content.length > 300 ? '...' : '');
                 contentDiv.dataset.expanded = 'false';
             } else {
                 contentDiv.style.webkitLineClamp = 'unset';
+                contentDiv.style.display = 'block';
                 contentDiv.textContent = escapeHtml(content);
                 contentDiv.dataset.expanded = 'true';
             }
