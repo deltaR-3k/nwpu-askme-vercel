@@ -234,9 +234,9 @@ async function performChat() {
             content: data.answer
         });
         
-        // 更新UI显示助手回复（用户消息已经在上面显示了）
-        addMessageToHistory('assistant', data.answer);
-        displayChatResults(data);
+    // 更新UI显示助手回复（用户消息已经在上面显示了）
+    addMessageToHistory('assistant', data.answer);
+    displayChatResults(data);
     } catch (error) {
         console.error('聊天错误:', error);
         showError('生成回答失败: ' + error.message);
@@ -264,10 +264,8 @@ function addMessageToHistory(role, content) {
     
     messageDiv.appendChild(headerDiv);
     messageDiv.appendChild(contentDiv);
-    chatHistoryList.appendChild(messageDiv);
-    
-    // 滚动到底部
-    chatHistorySection.scrollTop = chatHistorySection.scrollHeight;
+    // 最新消息插入顶部
+    chatHistoryList.prepend(messageDiv);
     
     // 显示对话历史区域
     chatHistorySection.style.display = 'block';
@@ -277,7 +275,8 @@ function addMessageToHistory(role, content) {
 // 更新对话历史显示
 function updateChatHistoryDisplay() {
     chatHistoryList.innerHTML = '';
-    conversationHistory.forEach(msg => {
+    // 倒序展示，最新在上
+    [...conversationHistory].reverse().forEach(msg => {
         addMessageToHistory(msg.role, msg.content);
     });
 }
