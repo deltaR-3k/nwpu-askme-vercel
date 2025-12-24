@@ -23,10 +23,6 @@ ENV/
 # 数据文件（如果不想提交合并后的数据）
 # merged_data.json
 
-# 嵌入向量缓存文件
-document_embeddings.npy
-embeddings_metadata.json
-
 # 日志文件
 *.log
 

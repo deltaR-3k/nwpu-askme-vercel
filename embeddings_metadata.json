@@ -1,0 +1,7 @@
+{
+  "model": "text-embedding-3-small",
+  "document_count": 108,
+  "embedding_dim": 1536,
+  "content_hash": "6c909209d6f07779da0927caf973c53c",
+  "created_at": "1766550208.3131115"
+}
