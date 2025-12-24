@@ -358,7 +358,8 @@ function createSourceItem(doc, index, isChatMode = false) {
     const category = doc.category || '未分类';
     const source = doc.source || '未知来源';
     const similarity = doc.similarity ? (doc.similarity * 100).toFixed(1) : null;
-    const content = doc.content || '';
+    const rawContent = doc.content || doc.text || doc.chunk || '';
+    const content = typeof rawContent === 'string' ? rawContent : JSON.stringify(rawContent);
     const isLong = content && content.length > 0;
 
     item.innerHTML = `
