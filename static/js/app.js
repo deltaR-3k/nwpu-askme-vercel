@@ -333,6 +333,7 @@ function createSourceItem(doc, index, isChatMode = false) {
     const source = doc.source || '未知来源';
     const similarity = doc.similarity ? (doc.similarity * 100).toFixed(1) : null;
     const content = doc.content || '';
+    const isLong = content && content.length > 0;
 
     item.innerHTML = `
         <div class="source-header">
@@ -343,19 +344,22 @@ function createSourceItem(doc, index, isChatMode = false) {
             <span class="source-tag">来源: ${escapeHtml(source)}</span>
             ${similarity ? `<span class="source-tag source-similarity">相似度: ${similarity}%</span>` : ''}
         </div>
-        ${!isChatMode && content ? `<div class="source-content">${escapeHtml(content.substring(0, 300))}${content.length > 300 ? '...' : ''}</div>` : ''}
+        ${content ? `<div class="source-content">${escapeHtml(content.substring(0, 300))}${content.length > 300 ? '...' : ''}</div>` : ''}
     `;
 
-    // 点击展开/折叠内容
-    if (!isChatMode && content) {
+    // 点击展开/折叠内容（聊天/搜索都可用）
+    if (isLong) {
         item.addEventListener('click', () => {
             const contentDiv = item.querySelector('.source-content');
-            if (contentDiv.style.webkitLineClamp) {
-                contentDiv.style.webkitLineClamp = 'none';
-                contentDiv.textContent = escapeHtml(content);
-            } else {
+            const expanded = contentDiv.dataset.expanded === 'true';
+            if (expanded) {
                 contentDiv.style.webkitLineClamp = '3';
                 contentDiv.textContent = escapeHtml(content.substring(0, 300)) + (content.length > 300 ? '...' : '');
+                contentDiv.dataset.expanded = 'false';
+            } else {
+                contentDiv.style.webkitLineClamp = 'unset';
+                contentDiv.textContent = escapeHtml(content);
+                contentDiv.dataset.expanded = 'true';
             }
         });
     }
