@@ -75,16 +75,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initTheme() {
     const saved = localStorage.getItem('npu-theme');
-    if (saved === 'dark') {
-        document.body.classList.add('theme-dark');
-    } else {
-        document.body.classList.remove('theme-dark');
-    }
+    const isDark = saved === 'dark';
+    document.body.classList.toggle('theme-dark', isDark);
+    updateThemeToggleIcon(isDark);
 }
 
 function toggleTheme() {
     const isDark = document.body.classList.toggle('theme-dark');
     localStorage.setItem('npu-theme', isDark ? 'dark' : 'light');
+    updateThemeToggleIcon(isDark);
+}
+
+function updateThemeToggleIcon(isDark) {
+    if (!themeToggle) return;
+    themeToggle.textContent = isDark ? '🌙' : '☀️';
+    themeToggle.setAttribute('aria-label', isDark ? '切换到亮色' : '切换到暗色');
 }
 
 // 检查后端健康状态
@@ -373,20 +378,11 @@ function createSourceItem(doc, index, isChatMode = false) {
         item.addEventListener('click', () => {
             const contentDiv = item.querySelector('.source-content');
             if (!contentDiv) return;
-            if (!contentDiv.dataset.expanded) {
-                contentDiv.dataset.expanded = 'false';
-            }
-            const expanded = contentDiv.dataset.expanded === 'true';
+            const expanded = contentDiv.classList.toggle('expanded');
             if (expanded) {
-                contentDiv.style.webkitLineClamp = '3';
-                contentDiv.style.display = '-webkit-box';
-                contentDiv.textContent = escapeHtml(content.substring(0, 300)) + (content.length > 300 ? '...' : '');
-                contentDiv.dataset.expanded = 'false';
-            } else {
-                contentDiv.style.webkitLineClamp = 'unset';
-                contentDiv.style.display = 'block';
                 contentDiv.textContent = escapeHtml(content);
-                contentDiv.dataset.expanded = 'true';
+            } else {
+                contentDiv.textContent = escapeHtml(content.substring(0, 300)) + (content.length > 300 ? '...' : '');
             }
         });
     }
