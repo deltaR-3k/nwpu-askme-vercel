@@ -352,7 +352,8 @@ def chat():
                     'title': doc['title'],
                     'category': doc.get('category', ''),
                     'source': doc.get('source', ''),
-                    'similarity': doc.get('similarity', 0)
+                    'similarity': doc.get('similarity', 0),
+                    'content': doc.get('content', '')
                 }
                 for doc in relevant_docs
             ]
